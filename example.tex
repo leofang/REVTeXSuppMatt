@@ -1,0 +1,144 @@
+\documentclass[aps,prl,reprint,twocolumn,superscriptaddress,floatfix,letterpaper,longbibliography]{revtex4-1}
+%-----------------------------------------------------------------
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage{CJK} % for Chinese characters
+
+% to stick the position of figures (\begin{figure}[!htbp]) 
+\usepackage{float} 
+
+% add hyperlinks to labels
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+\usepackage[all]{hypcap} % let hyperlinks correctly point to figures rather than their captions; must be loaded after the hyperref package!
+
+% change the font to Times Roman from the incredibly ugly Computer Modern
+\usepackage{times}
+
+% use the "hooked" Greek symbol \uptau
+\usepackage{upgreek}
+
+% Include figure files
+\usepackage{graphicx}
+
+\usepackage{color}
+
+\DeclareMathOperator{\arccosh}{arcosh}
+\DeclareMathOperator{\cotha}{coth}
+\DeclareMathOperator{\tanha}{tanh}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\res}{Res}
+
+\usepackage{filecontents}
+\begin{filecontents}{\jobname.bib}
+	@article{Ref1,
+		author={Y.-L. L. Fang},
+		title={This is the first reference},
+		journal={Journal of blah},
+		volume={1},
+		pages={1},
+		year={2011}
+	}
+	@article{Ref2,
+		author={Y.-L. L. Fang},
+		title={This is the second reference},
+		journal={Journal of blah},
+		volume={1},
+		pages={2},
+		year={2012}
+	}
+	@article{Ref3,
+		author={Y.-L. L. Fang},
+		title={This is the third reference},
+		journal={Journal of blah},
+		volume={1},
+		pages={3},
+		year={2013}
+	}
+	@article{Ref4,
+		author={Y.-L. L. Fang},
+		title={This is the fourth reference},
+		journal={Journal of blah},
+		volume={1},
+		pages={4},
+		year={2014}
+	}
+	@article{Ref5,
+		author={Y.-L. L. Fang},
+		title={This is the fifth reference},
+		journal={Journal of blah},
+		volume={1},
+		pages={5},
+		year={2015}
+	}
+\end{filecontents}
+
+% seperate bibliography for main text and supplementary material
+\usepackage{bibunits}
+
+% ----------------------------------------------------------------------------
+% main text starts
+
+\begin{document}
+\begin{bibunit}[apsrev4-1]
+\title{This is a minimal working example for using bibunits with REVTeX 4.1}
+\author{Leo Fang}
+\affiliation{Department of Physics, Duke University, P.O. Box 90305, Durham, North Carolina 27708-0305, USA}
+\date{\today}
+
+\begin{abstract}
+We investigate this and that, and we find this and that, which we think worth publishing on PRL.
+\end{abstract}
+\maketitle
+
+This is all about blahblahblah \cite{Ref1, Ref2, Ref3}. In this work, we find that 
+\begin{equation}
+   E = mc^2, \label{eq1}
+\end{equation}
+and Eq.~\eqref{eq1} is our main result.
+
+\emph{Acknowledgments.} Thank you very much.
+
+\nocite{apsrev41Control}
+\putbib[\jobname,REVTeX-longbib]
+\end{bibunit}
+
+\widetext
+\clearpage
+
+% ----------------------------------------------------------------------------
+% supplementary material starts
+\begin{bibunit}[apsrev4-1]
+
+\renewcommand{\bibnumfmt}[1]{[S#1]}
+\renewcommand{\citenumfont}[1]{S#1}
+\renewcommand{\theequation}{S\arabic{equation}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thepage}{S\arabic{page}}  
+\renewcommand{\thesection}{S\arabic{section}}   
+\renewcommand{\thetable}{S\arabic{table}}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{page}{1}
+\setcounter{section}{0}
+
+\begin{center}
+	\textbf{\large Supplemental Material for ``This is a minimal working example for using bibunits with REVTeX 4.1''}\\
+	\vspace{15pt}
+	Leo Fang\\
+	(Dated: \today)
+\end{center}
+
+I am citing other references not cited in the main text \cite{Ref4, Ref5}. Now cite the papers already appeared in the main text, but in different order \cite{Ref2, Ref1, Ref3}. 
+
+Now I present a new equation
+   \begin{equation}
+      F=ma \label{Seq1}
+   \end{equation}
+and then I refer to it \eqref{Seq1}. Now I refer the equation in the main text \eqref{eq1}.
+
+\nocite{apsrev41Control}
+\putbib[\jobname,REVTeX-longbib]
+\end{bibunit}
+
+\end{document}
